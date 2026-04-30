@@ -56,14 +56,14 @@ export default function Navbar({ user, onLogout }) {
           </Link>
 
           <Link
-            href="/animals"
+            href="/all-animals"
             className={`transition font-medium ${
-              isActive("/animals")
+              isActive("/all-animals")
                 ? "text-green-500"
                 : "text-gray-700 dark:text-gray-300 hover:text-green-500"
             }`}
           >
-            Animals
+            All Animals
           </Link>
 
           {/* 🔔 Notification */}
@@ -131,8 +131,8 @@ export default function Navbar({ user, onLogout }) {
                 Home
               </Link>
 
-              <Link href="/animals" onClick={() => setIsOpen(false)}>
-                Animals
+              <Link href="/all-animals" onClick={() => setIsOpen(false)}>
+                All Animals
               </Link>
 
               {user ? (

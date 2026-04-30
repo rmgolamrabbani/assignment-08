@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function AnimalCards({ animals }) {
   if (!animals || animals.length === 0) {
@@ -47,9 +48,11 @@ export default function AnimalCards({ animals }) {
                 ৳ {animal.price.toLocaleString()}
               </p>
 
-              <button className="bg-green-500 hover:bg-green-600 text-white text-sm px-3 py-1 rounded-lg transition">
-                View
-              </button>
+              <Link href={`/all-animals/${animal.id}`}>
+                <button className="bg-green-500 hover:bg-green-600 text-white text-sm px-3 py-1 rounded-lg transition">
+                  View
+                </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -57,3 +60,4 @@ export default function AnimalCards({ animals }) {
     </>
   );
 }
+
