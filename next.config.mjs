@@ -4,7 +4,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'i.postimg.cc',
+        hostname: 'images.unsplash.com',
         port: '',
         pathname: '/**',
       },
@@ -13,5 +13,4 @@ const nextConfig = {
 };
 
 export default nextConfig;
-
 

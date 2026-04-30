@@ -2,11 +2,13 @@
 import React from "react";
 import Image from "next/image";
 
-
 export default function AnimalCards({ animals }) {
+  if (!animals || animals.length === 0) {
+    return <p className="text-center col-span-full">No animals found</p>;
+  }
+
   return (
-    <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      
+    <>
       {animals.map((animal) => (
         <div
           key={animal.id}
@@ -18,6 +20,7 @@ export default function AnimalCards({ animals }) {
               src={animal.image}
               alt={animal.name}
               fill
+              sizes="(max-width: 768px) 100vw, 25vw"
               className="object-cover group-hover:scale-110 transition duration-500"
             />
           </div>
@@ -51,7 +54,6 @@ export default function AnimalCards({ animals }) {
           </div>
         </div>
       ))}
-
-    </div>
+    </>
   );
 }

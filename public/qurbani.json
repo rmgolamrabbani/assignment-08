@@ -1,0 +1,56 @@
+{
+  "tips": [
+    {
+      "id": 1,
+      "title": "Healthy Animal",
+      "desc": "Choose a healthy animal without disease.",
+      "icon": "💪"
+    },
+    {
+      "id": 2,
+      "title": "Correct Age",
+      "desc": "Ensure proper age before Qurbani.",
+      "icon": "📅"
+    },
+    {
+      "id": 3,
+      "title": "Check Teeth",
+      "desc": "Teeth indicate maturity.",
+      "icon": "🦷"
+    }
+  ],
+  "breeds": [
+    {
+      "id": 1,
+      "name": "Deshi Cow",
+      "image": "https://i.postimg.cc/0y6XK0rK/cow1.jpg",
+      "rating": 4.8,
+      "category": "cow",
+      "badge": "Popular"
+    },
+    {
+      "id": 2,
+      "name": "Friesian Cow",
+      "image": "https://i.postimg.cc/Zn0jGzYJ/cow2.jpg",
+      "rating": 4.9,
+      "category": "cow",
+      "badge": "Premium"
+    },
+    {
+      "id": 3,
+      "name": "Black Bengal Goat",
+      "image": "https://i.postimg.cc/2yY8bQf3/goat1.jpg",
+      "rating": 4.7,
+      "category": "goat",
+      "badge": "Best Seller"
+    },
+    {
+      "id": 4,
+      "name": "Jamunapari Goat",
+      "image": "https://i.postimg.cc/QtLz5zjL/goat2.jpg",
+      "rating": 4.6,
+      "category": "goat",
+      "badge": "Top Rated"
+    }
+  ]
+}
