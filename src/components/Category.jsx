@@ -1,21 +1,39 @@
-import { Button } from "@heroui/react";
-import Link from "next/link";
+"use client";
 
-const Category = async () => {
-  const res = await fetch("https://assignment-08-flame.vercel.app/category.json");
-  const categories = await res.json();
+import { useRouter, useSearchParams } from "next/navigation";
+
+const categories = ["Cow", "Goat", "Sheep"];
+
+const Category = ({ currentCategory }) => {
+  const router = useRouter();
+  const params = useSearchParams();
+
+  const handleCategory = (cat) => {
+    const newParams = new URLSearchParams(params.toString());
+
+    if (cat) {
+      newParams.set("category", cat);
+    } else {
+      newParams.delete("category");
+    }
+
+    router.push(`/animals?${newParams.toString()}`);
+  };
+
   return (
-    <div className="mb-5 space-x-3">
-      {categories.map((category) => (
-        <Link
-          key={category.id}
-          href={`?category=${category.name.toLowerCase()}`}
+    <div className="flex gap-3 mt-4 flex-wrap">
+      {categories.map((cat) => (
+        <button
+          key={cat}
+          onClick={() => handleCategory(cat)}
+          className={`px-4 py-2 rounded ${
+            currentCategory === cat
+              ? "bg-emerald-600"
+              : "bg-gray-700"
+          }`}
         >
-          {" "}
-          <Button variant="outline" size="sm">
-            {category.name}
-          </Button>
-        </Link>
+          {cat}
+        </button>
       ))}
     </div>
   );

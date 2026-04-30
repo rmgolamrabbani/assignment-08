@@ -13,7 +13,7 @@ export default function AnimalCards({ animals }) {
       {animals.map((animal) => (
         <div
           key={animal.id}
-          className="bg-white dark:bg-gray-900 rounded-2xl shadow-md hover:shadow-xl transition duration-300 overflow-hidden group"
+          className="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl transition duration-300 overflow-hidden group"
         >
           {/* Image */}
           <div className="relative w-full h-52 overflow-hidden">

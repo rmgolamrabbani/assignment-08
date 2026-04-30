@@ -25,7 +25,7 @@ const Hero = () => {
       <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/40 to-transparent"></div>
 
       {/* Content Container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full text-white pt-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full text-white pt-2 mt-2 mb-8">
         
         <motion.div 
           initial={{ opacity: 0, x: -50 }}
