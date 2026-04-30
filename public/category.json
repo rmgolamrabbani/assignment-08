@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Large Animal",
+    "slug": "large-animal",
+    "icon": "🐄"
+  },
+  {
+    "id": 2,
+    "name": "Small Animal",
+    "slug": "small-animal",
+    "icon": "🐐"
+  },
+  {
+    "id": 3,
+    "name": "Medium Animal",
+    "slug": "medium-animal",
+    "icon": "🐑"
+  }
+]

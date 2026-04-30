@@ -22,7 +22,7 @@ const Hero = () => {
       </div>
 
       {/* Overlay: বাম দিকে ডার্কনেস বাড়ানো হয়েছে যাতে টেক্সট ক্লিয়ার হয় */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
+      <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/40 to-transparent"></div>
 
       {/* Content Container */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full text-white pt-20">
@@ -88,4 +88,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
