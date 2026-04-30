@@ -1,59 +1,49 @@
-// app/animals/page.jsx
+"use client";
 
-import Category from "@/components/Category";
-import SortBar from "@/components/SortBar";
-import AnimalCards from "@/components/AnimalCards";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 
-const AllAnimalsPage = async ({ searchParams }) => {
-  const params = searchParams || {};
-  const category = params.category || "";
-  const sort = params.sort || "";
+const SortBar = ({ currentSort }) => {
+  const router = useRouter();
+  const params = useSearchParams();
+  const pathname = usePathname(); // 🔥
 
-  const res = await fetch(
-    "https://assignment-08-flame.vercel.app/data.json",
-    { cache: "no-store" }
-  );
+  const handleSort = (type) => {
+    const newParams = new URLSearchParams(params.toString());
 
-  let animals = await res.json();
+    if (type) {
+      newParams.set("sort", type);
+    } else {
+      newParams.delete("sort");
+    }
 
-  // ✅ Category Filter
-  if (category) {
-    animals = animals.filter(
-      (a) => a.category.toLowerCase() === category.toLowerCase()
-    );
-  }
-
-  // ✅ Sorting
-  if (sort === "low") {
-    animals.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
-  } else if (sort === "high") {
-    animals.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
-  }
+    router.push(`${pathname}?${newParams.toString()}`); // 🔥 fix
+  };
 
   return (
-    <div className="min-h-screen bg-[#0f172a] text-white">
-      <div className="max-w-7xl mx-auto px-6 py-12">
+    <div className="flex gap-2 bg-slate-800 p-2 rounded-xl">
+      <button
+        onClick={() => handleSort("low")}
+        className={`px-2 py-1  rounded ${
+          currentSort === "low"
+            ? "bg-emerald-600"
+            : "bg-gray-700"
+        }`}
+      >
+        Low → High
+      </button>
 
-        {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between mb-8 gap-4">
-          <h1 className="text-4xl font-bold">
-            All <span className="text-emerald-500">Animals</span> 🐾
-          </h1>
-
-          {/* ✅ Sort */}
-          <SortBar currentSort={sort} category={category} />
-        </div>
-
-        {/* ✅ Category */}
-        <Category currentCategory={category} />
-
-        {/* Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-10">
-          <AnimalCards animals={animals} />
-        </div>
-      </div>
+      <button
+        onClick={() => handleSort("high")}
+        className={`px-2 py-1 rounded ${
+          currentSort === "high"
+            ? "bg-emerald-600"
+            : "bg-gray-700"
+        }`}
+      >
+        High → Low
+      </button>
     </div>
   );
 };
 
-export default AllAnimalsPage;
+export default SortBar;

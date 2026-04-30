@@ -1,12 +1,13 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 
 const categories = ["Cow", "Goat", "Sheep"];
 
 const Category = ({ currentCategory }) => {
   const router = useRouter();
   const params = useSearchParams();
+  const pathname = usePathname(); // 🔥 important
 
   const handleCategory = (cat) => {
     const newParams = new URLSearchParams(params.toString());
@@ -17,7 +18,7 @@ const Category = ({ currentCategory }) => {
       newParams.delete("category");
     }
 
-    router.push(`/animals?${newParams.toString()}`);
+    router.push(`${pathname}?${newParams.toString()}`); // 🔥 fix
   };
 
   return (
