@@ -159,10 +159,10 @@ export default function Navbar({ user, onLogout }) {
                 Login
               </Link>
               <Link
-                href="/register"
+                href="/signup"
                 className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition"
               >
-                Register
+                Sign Up
               </Link>
             </div>
           )}
@@ -206,7 +206,7 @@ export default function Navbar({ user, onLogout }) {
               ) : (
                 <>
                   <Link href="/login">Login</Link>
-                  <Link href="/register">Register</Link>
+                  <Link href="/signup">Sign Up</Link>
                 </>
               )}
             </div>

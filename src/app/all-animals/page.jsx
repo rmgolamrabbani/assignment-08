@@ -14,14 +14,14 @@ const AllAnimalsPage = async ({ searchParams }) => {
 
   let animals = await res.json();
 
-  // ✅ Category Filter (logic থাকলে থাকুক, UI নেই)
+
   if (category) {
     animals = animals.filter(
       (a) => a.category.toLowerCase() === category.toLowerCase()
     );
   }
 
-  // ✅ Sorting
+ 
   if (sort === "low") {
     animals.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
   } else if (sort === "high") {
@@ -32,7 +32,7 @@ const AllAnimalsPage = async ({ searchParams }) => {
     <div className="min-h-screen bg-[#0f172a] text-white">
       <div className="max-w-7xl mx-auto px-6 py-12">
 
-        {/* Header */}
+      
         <div className="flex flex-col md:flex-row justify-between mb-8 gap-4">
           <h1 className="text-4xl font-bold">
             All <span className="text-emerald-500">Animals</span>
