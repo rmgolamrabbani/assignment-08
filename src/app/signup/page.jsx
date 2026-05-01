@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Check } from "@gravity-ui/icons";
 import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 import {
   Button,
   Card,
@@ -15,6 +16,10 @@ import {
 } from "@heroui/react";
 
 export default function SignUpPage() {
+
+  const router = useRouter();
+
+
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -32,8 +37,25 @@ export default function SignUpPage() {
     })
     console.log("Signup response:", { data, error });
 
+    
 
+
+    if (error) {
+        alert(error.message || "Something went wrong. Please try again.");
+    } else {
+        alert("Signup successful! Please log in.");
+        router.push("/login");
+    }
   };
+
+  const handleGoogleSignup = async () => {
+    await authClient.signIn.social({
+        provider: 'google'
+    })
+  }
+
+
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#0f172a] px-4">
@@ -114,6 +136,18 @@ export default function SignUpPage() {
               </Button>
             </div>
           </Form>
+            <p className="text-center text-gray-500 text-sm mt-4">
+              Or sign up with
+            </p>
+            <div className="flex justify-center gap-4 mt-4">
+              <Button
+                type="button"
+                className="bg-transparent text-gray-300 border border-gray-600 hover:bg-gray-700 hover:text-white transition"
+                onClick={handleGoogleSignup}
+              >
+                Google
+              </Button>
+            </div>
         </Card>
       </motion.div>
     </div>
