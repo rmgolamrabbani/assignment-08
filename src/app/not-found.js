@@ -10,7 +10,7 @@ export default function NotFound() {
       {/* 🔥 Animated Gradient Glow Background */}
       <div className="absolute inset-0">
         <div className="absolute w-[500px] h-[500px] bg-purple-600 opacity-20 blur-3xl rounded-full top-[-100px] left-[-100px] animate-pulse"></div>
-        <div className="absolute w-[400px] h-[400px] bg-blue-600 opacity-20 blur-3xl rounded-full bottom-[-100px] right-[-100px] animate-pulse"></div>
+        <div className="absolute w-100 h-[400px] bg-blue-600 opacity-20 blur-3xl rounded-full -bottom-25 right-[-100px] animate-pulse"></div>
       </div>
 
       {/* 🚀 Main Card */}
