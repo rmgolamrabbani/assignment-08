@@ -1,61 +1,72 @@
-import { authClient } from "@/lib/auth-client";
-import { Button, Input, Label, Modal, Surface, TextField } from "@heroui/react";
-import { BiEdit, BiUser } from "react-icons/bi";
+"use client";
 
-export function UpdateUserModal() {
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    const name = e.target.name.value;
-    const image = e.target.image.value;
+import { Input } from "@heroui/react";
+import { useState, useEffect } from "react";
 
-    await authClient.updateUser({
-        name,
-        image
-    })
+const UpdateUserModal = ({ isOpen, onOpenChange, user, onUpdate }) => {
+  const [name, setName] = useState("");
+  const [image, setImage] = useState("");
+  const [loading, setLoading] = useState(false);
 
-    
+  useEffect(() => {
+    if (user) {
+      setName(user.name || "");
+      setImage(user.image || "");
+    }
+  }, [user]);
+
+  const handleSubmit = async () => {
+    setLoading(true);
+    try {
+      await onUpdate({ name, image });
+      onOpenChange(false);
+      window.location.reload();
+    } catch (err) {
+      console.error(err);
+    }
+    setLoading(false);
   };
+
+  if (!isOpen) return null;
+
   return (
-    <Modal>
-      <Button variant="secondary">
-        <BiEdit /> Update Profile
-      </Button>
-      <Modal.Backdrop>
-        <Modal.Container placement="auto">
-          <Modal.Dialog className="sm:max-w-md">
-            <Modal.CloseTrigger />
-            <Modal.Header>
-              <Modal.Icon className="bg-accent-soft text-accent-soft-foreground">
-                <BiUser className="size-5" />
-              </Modal.Icon>
-              <Modal.Heading>Update User</Modal.Heading>
-            </Modal.Header>
-            <Modal.Body className="p-6">
-              <Surface variant="default">
-                <form onSubmit={onSubmit} className="flex flex-col gap-4">
-                  <TextField className="w-full" name="name" type="text">
-                    <Label>Name</Label>
-                    <Input placeholder="Enter your name" />
-                  </TextField>
-                  <TextField className="w-full" name="image" type="url">
-                    <Label>Image URL</Label>
-                    <Input placeholder="Image URL" />
-                  </TextField>
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+      <div className="bg-gray-800 text-white p-6 rounded-xl w-full max-w-md">
+        <h3 className="font-bold text-lg mb-4">Update Profile</h3>
 
-                  <Modal.Footer>
-                    <Button slot="close" variant="secondary">
-                      Cancel
-                    </Button>
-                    <Button type="submit" slot="close">Save</Button>
-                  </Modal.Footer>
-                </form>
-              </Surface>
-            </Modal.Body>
-          </Modal.Dialog>
-        </Modal.Container>
-      </Modal.Backdrop>
-    </Modal>
+        <div className="flex flex-col gap-3">
+          <Input
+            label="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <Input
+            label="Image URL"
+            value={image}
+            onChange={(e) => setImage(e.target.value)}
+          />
+        </div>
+
+        <div className="flex justify-end gap-2 mt-5">
+          <button
+            className="bg-gray-600 px-4 py-2 rounded"
+            onClick={() => onOpenChange(false)}
+            disabled={loading}
+          >
+            Cancel
+          </button>
+
+          <button
+            className="bg-green-500 px-4 py-2 rounded"
+            onClick={handleSubmit}
+            disabled={loading}
+          >
+            {loading ? "Updating..." : "Update"}
+          </button>
+        </div>
+      </div>
+    </div>
   );
-}
+};
 
-
+export default UpdateUserModal;

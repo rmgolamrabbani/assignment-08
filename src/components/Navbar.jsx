@@ -124,7 +124,7 @@ export default function Navbar() {
     onClick={() => setProfileOpen(!profileOpen)}
     className="w-10 h-10 relative cursor-pointer"
   >
-    {user?.image?.name?.charAt(0)?.toUpperCase() ? (
+    {user?.image && user?.name?.charAt(0)?.toUpperCase()? (
       <Image
         src={user.image}
         alt="Profile"
