@@ -12,7 +12,7 @@ const FeaturedAnimals = async () => {
   const topAnimals = animals.slice(0, 4);
 
   return (
-    // ব্যাকগ্রাউন্ড এবং প্যাডিং আগের সেকশনের সাথে মিল রেখে
+    
     <section className="bg-white dark:bg-[#0f172a] py-16 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6">
         
@@ -31,7 +31,7 @@ const FeaturedAnimals = async () => {
 
         {/* Animals Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {/* খেয়াল রাখবেন আপনার AnimalCards কম্পোনেন্টের ভেতর যেন কার্ডের ডিজাইন আগের মত slate-800 হয় */}
+        
           <AnimalCards animals={topAnimals} />
         </div>
 
