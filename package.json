@@ -12,6 +12,7 @@
     "@better-auth/mongo-adapter": "^1.6.9",
     "@gravity-ui/icons": "^2.18.0",
     "@heroui/react": "^3.0.3",
+    "@heroui/theme": "^2.4.26",
     "better-auth": "^1.6.9",
     "framer-motion": "^12.38.0",
     "lucide-react": "^1.14.0",
@@ -27,6 +28,6 @@
     "@tailwindcss/postcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
-    "tailwindcss": "^4"
+    "tailwindcss": "^4.2.4"
   }
 }

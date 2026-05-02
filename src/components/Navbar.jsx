@@ -9,6 +9,7 @@ import Image from "next/image";
 import { authClient } from "@/lib/auth-client";
 
 
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
@@ -30,7 +31,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // 👉 Click outside profile close
+ 
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (profileRef.current && !profileRef.current.contains(e.target)) {
@@ -41,12 +42,12 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // 👉 Handle Logout Function
+
   const handleLogout = async () => {
     await authClient.signOut({
         fetchOptions: {
             onSuccess: () => {
-                router.push("/login"); // লগআউট হলে লগইন পেজে পাঠাবে
+                router.push("/login"); 
                 setProfileOpen(false);
                 setIsOpen(false);
             },
@@ -58,7 +59,7 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      initial={{ y: -80 }}
+      initial={{ y: 0 }}
       animate={{ y: 0 }}
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         scrolled ? "bg-gray-900/90 backdrop-blur-md py-4 shadow-lg" : "bg-gray-900 py-6"
@@ -66,17 +67,16 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
 
-        {/* 🔰 Logo */}
+        {/*  Logo */}
         <Link href="/" className="flex items-center gap-2">
           <motion.div whileHover={{ scale: 1.05 }}>
-            <Image src="/logo.png" alt="Logo" width={40} height={40} className="h-auto w-auto" />
+            <Image src="/logo.png" alt="Logo" width={50} height={50} className="h-auto w-auto " />
           </motion.div>
           <span className="text-xl font-bold text-white">
             Qurbani<span className="text-green-500">Hat</span>
           </span>
         </Link>
 
-        {/* 💻 Desktop Menu */}
         <div className="hidden md:flex items-center gap-8">
           <Link
             href="/"
@@ -86,7 +86,7 @@ export default function Navbar() {
           >
             Home
             {isActive("/") && (
-              <motion.div layoutId="underline" className="absolute left-0 -bottom-1 w-full h-[2px] bg-green-500" />
+              <motion.div layoutId="underline" className="absolute left-0 -bottom-1 w-full h-0.5 bg-green-500" />
             )}
           </Link>
 
@@ -98,17 +98,17 @@ export default function Navbar() {
           >
             All Animals
             {isActive("/all-animals") && (
-              <motion.div layoutId="underline" className="absolute left-0 -bottom-1 w-full h-[2px] bg-green-500" />
+              <motion.div layoutId="underline" className="absolute left-0 -bottom-1 w-full h-0.5 bg-green-500" />
             )}
           </Link>
 
-          {/* 🔔 Notification (Only if user logged in) */}
+          {/*  Notification (Only if user logged in) */}
           {user && (
             <div className="relative">
               <Bell className="text-gray-300 cursor-pointer w-5 h-5" />
               <motion.span
                 initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
+                animate={{ scale: 0 }}
                 className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] px-1.5 rounded-full"
               >
                 1
@@ -116,19 +116,19 @@ export default function Navbar() {
             </div>
           )}
 
-          {/* 👤 Auth Section */}
           {user ? (
             <div className="relative" ref={profileRef}>
               <div className="relative" ref={profileRef}>
-  {/* Avatar */}
+ 
   <div
     onClick={() => setProfileOpen(!profileOpen)}
     className="w-10 h-10 relative cursor-pointer"
   >
-    {user?.image ? (
+    {user?.image?.name?.charAt(0)?.toUpperCase() ? (
       <Image
         src={user.image}
         alt="Profile"
+
         fill
         className="rounded-full border-2 border-green-500 object-cover"
       />
@@ -139,7 +139,7 @@ export default function Navbar() {
     )}
   </div>
 
-  {/* 🔽 Dropdown */}
+ 
   <AnimatePresence>
     {profileOpen && (
       <motion.div
@@ -155,15 +155,13 @@ export default function Navbar() {
           </p>
         </div>
 
-        <button
-          onClick={() => {
-            setModalOpen(true);
-            setProfileOpen(false);
-          }}
-          className="block w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-gray-700"
-        >
-          Profile
-        </button>
+        <Link
+  href="/profile"
+  className="block w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-gray-700"
+  onClick={() => setProfileOpen(false)}
+>
+  Profile
+</Link>
 
         <button
           onClick={handleLogout}
@@ -175,110 +173,7 @@ export default function Navbar() {
     )}
   </AnimatePresence>
 
-  {/* 🔥 PROFILE MODAL */}
-  <AnimatePresence>
-    {modalOpen && (
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 bg-black/60 flex items-center justify-center z-50"
-      >
-        <motion.div
-          initial={{ scale: 0.9, y: 20 }}
-          animate={{ scale: 1, y: 0 }}
-          exit={{ scale: 0.9, y: 20 }}
-          className="bg-gray-900 p-6 rounded-2xl w-full max-w-md border border-gray-700"
-        >
-          <h2 className="text-xl font-bold text-white mb-4">
-            Profile Settings
-          </h2>
-
-          <form
-            onSubmit={async (e) => {
-              e.preventDefault();
-              setLoading(true);
-
-              const name = e.target.name.value;
-
-              const { error } = await authClient.updateUser({
-                data: { name, image: preview },
-              });
-
-              setLoading(false);
-
-              if (!error) {
-                router.refresh();
-                setModalOpen(false);
-              }
-            }}
-            className="flex flex-col gap-4"
-          >
-            {/* Avatar Preview */}
-            <div className="flex justify-center">
-              {preview ? (
-                <img
-                  src={preview}
-                  className="w-20 h-20 rounded-full object-cover border-2 border-green-500"
-                />
-              ) : (
-                <div className="w-20 h-20 flex items-center justify-center rounded-full bg-green-500 text-white text-xl font-bold">
-                  {user?.image ? (
-                    <img
-                      src={user.image}
-                      alt="Profile"
-                      className="w-full h-full rounded-full object-cover"
-                    />
-                  ) : (
-                    user?.name?.charAt(0)?.toUpperCase() || "U"
-                  )}
-                </div>
-              )}
-            </div>
-
-            {/* Name */}
-            <input
-              name="name"
-              defaultValue={user?.name}
-              className="p-2 rounded bg-gray-800 text-white"
-            />
-
-            {/* Email */}
-            <input
-              value={user?.email}
-              readOnly
-              className="p-2 rounded bg-gray-700 text-gray-400 cursor-not-allowed"
-            />
-
-            {/* Image URL */}
-            <input
-              value={preview || ""}
-              onChange={(e) => setPreview(e.target.value)}
-              placeholder="Image URL"
-              className="p-2 rounded bg-gray-800 text-white"
-            />
-
-            <div className="flex gap-2">
-              <button
-                disabled={loading}
-                className="bg-green-500 w-full py-2 rounded text-white"
-              >
-                {loading ? "Updating..." : "Save"}
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setModalOpen(false)}
-                className="bg-gray-700 w-full py-2 rounded text-white"
-              >
-                Cancel
-              </button>
-            </div>
-          </form>
-        </motion.div>
-      </motion.div>
-    )}
-  </AnimatePresence>
+  
 </div>
             </div>
           ) : (
@@ -299,13 +194,13 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* 📱 Mobile Button */}
+        {/* Mobile Button */}
         <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-white">
           {isOpen ? <X /> : <Menu />}
         </button>
       </div>
 
-      {/* 📱 Mobile Menu */}
+      {/*  Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
