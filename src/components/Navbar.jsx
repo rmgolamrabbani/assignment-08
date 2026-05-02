@@ -6,8 +6,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
-// 👉 Better Auth Client Import
 import { authClient } from "@/lib/auth-client";
+
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,10 +17,12 @@ export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
   const profileRef = useRef();
-
-  // 👉 Better Auth Session hooks
   const { data: session } = authClient.useSession();
   const user = session?.user;
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [preview, setPreview] = useState(user?.image);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -117,46 +119,167 @@ export default function Navbar() {
           {/* 👤 Auth Section */}
           {user ? (
             <div className="relative" ref={profileRef}>
-              <div
-                onClick={() => setProfileOpen(!profileOpen)}
-                className="w-10 h-10 relative cursor-pointer"
-              >
-                <Image
-                  src={user?.image || "/logo.png"} // Better Auth uses 'image' field
-                  alt="Profile"
-                  fill
-                  className="rounded-full border-2 border-green-500 object-cover"
-                />
-              </div>
+              <div className="relative" ref={profileRef}>
+  {/* Avatar */}
+  <div
+    onClick={() => setProfileOpen(!profileOpen)}
+    className="w-10 h-10 relative cursor-pointer"
+  >
+    {user?.image ? (
+      <Image
+        src={user.image}
+        alt="Profile"
+        fill
+        className="rounded-full border-2 border-green-500 object-cover"
+      />
+    ) : (
+      <div className="w-full h-full flex items-center justify-center rounded-full bg-green-500 text-white font-bold text-lg border-2 border-green-500">
+        {user?.name?.charAt(0)?.toUpperCase() || "U"}
+      </div>
+    )}
+  </div>
 
-              {/* 🔽 Dropdown */}
-              <AnimatePresence>
-                {profileOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    className="absolute right-0 mt-3 w-48 bg-gray-800 border border-gray-700 rounded-xl shadow-lg overflow-hidden z-50"
-                  >
-                    <div className="px-4 py-3 border-b border-gray-700">
-                        <p className="text-xs text-gray-400">Signed in as</p>
-                        <p className="text-sm font-medium text-white truncate">{user.name}</p>
-                    </div>
-                    <Link href="/dashboard" className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700 transition">
-                      Dashboard
-                    </Link>
-                    <Link href="/profile" className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700 transition">
-                      Profile
-                    </Link>
-                    <button
-                      onClick={handleLogout}
-                      className="w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-gray-700 transition"
-                    >
-                      Logout
-                    </button>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+  {/* 🔽 Dropdown */}
+  <AnimatePresence>
+    {profileOpen && (
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 10 }}
+        className="absolute right-0 mt-3 w-52 bg-gray-800 border border-gray-700 rounded-xl shadow-lg overflow-hidden z-50"
+      >
+        <div className="px-4 py-3 border-b border-gray-700">
+          <p className="text-xs text-gray-400">Signed in as</p>
+          <p className="text-sm font-medium text-white truncate">
+            {user?.name}
+          </p>
+        </div>
+
+        <button
+          onClick={() => {
+            setModalOpen(true);
+            setProfileOpen(false);
+          }}
+          className="block w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-gray-700"
+        >
+          Profile
+        </button>
+
+        <button
+          onClick={handleLogout}
+          className="w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-gray-700"
+        >
+          Logout
+        </button>
+      </motion.div>
+    )}
+  </AnimatePresence>
+
+  {/* 🔥 PROFILE MODAL */}
+  <AnimatePresence>
+    {modalOpen && (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 bg-black/60 flex items-center justify-center z-50"
+      >
+        <motion.div
+          initial={{ scale: 0.9, y: 20 }}
+          animate={{ scale: 1, y: 0 }}
+          exit={{ scale: 0.9, y: 20 }}
+          className="bg-gray-900 p-6 rounded-2xl w-full max-w-md border border-gray-700"
+        >
+          <h2 className="text-xl font-bold text-white mb-4">
+            Profile Settings
+          </h2>
+
+          <form
+            onSubmit={async (e) => {
+              e.preventDefault();
+              setLoading(true);
+
+              const name = e.target.name.value;
+
+              const { error } = await authClient.updateUser({
+                data: { name, image: preview },
+              });
+
+              setLoading(false);
+
+              if (!error) {
+                router.refresh();
+                setModalOpen(false);
+              }
+            }}
+            className="flex flex-col gap-4"
+          >
+            {/* Avatar Preview */}
+            <div className="flex justify-center">
+              {preview ? (
+                <img
+                  src={preview}
+                  className="w-20 h-20 rounded-full object-cover border-2 border-green-500"
+                />
+              ) : (
+                <div className="w-20 h-20 flex items-center justify-center rounded-full bg-green-500 text-white text-xl font-bold">
+                  {user?.image ? (
+                    <img
+                      src={user.image}
+                      alt="Profile"
+                      className="w-full h-full rounded-full object-cover"
+                    />
+                  ) : (
+                    user?.name?.charAt(0)?.toUpperCase() || "U"
+                  )}
+                </div>
+              )}
+            </div>
+
+            {/* Name */}
+            <input
+              name="name"
+              defaultValue={user?.name}
+              className="p-2 rounded bg-gray-800 text-white"
+            />
+
+            {/* Email */}
+            <input
+              value={user?.email}
+              readOnly
+              className="p-2 rounded bg-gray-700 text-gray-400 cursor-not-allowed"
+            />
+
+            {/* Image URL */}
+            <input
+              value={preview || ""}
+              onChange={(e) => setPreview(e.target.value)}
+              placeholder="Image URL"
+              className="p-2 rounded bg-gray-800 text-white"
+            />
+
+            <div className="flex gap-2">
+              <button
+                disabled={loading}
+                className="bg-green-500 w-full py-2 rounded text-white"
+              >
+                {loading ? "Updating..." : "Save"}
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setModalOpen(false)}
+                className="bg-gray-700 w-full py-2 rounded text-white"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </motion.div>
+      </motion.div>
+    )}
+  </AnimatePresence>
+</div>
             </div>
           ) : (
             <div className="flex gap-3">
@@ -225,3 +348,6 @@ export default function Navbar() {
     </motion.nav>
   );
 }
+
+
+

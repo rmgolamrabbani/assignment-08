@@ -13,8 +13,7 @@ export const auth = betterAuth({
 
   trustedOrigins: [
     "http://localhost:3000",
-    "https://assignment-08-flame.vercel.app", 
-    "https://assignment-08-9gmdd1eiz-rmgolamrabbanis-projects.vercel.app" 
+    "https://assignment-08-c8u2ktrxe-rmgolamrabbanis-projects.vercel.app/" 
   ],
 
   emailAndPassword: {

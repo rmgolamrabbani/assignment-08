@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Check } from "@gravity-ui/icons";
-import { authClient } from "@/lib/auth-client"; // আপনার auth-client পাথ ঠিক আছে কি না নিশ্চিত হয়ে নিন
+import { authClient } from "@/lib/auth-client"; 
 import {
   Button,
   Card,
@@ -24,17 +24,17 @@ export default function LogInPage() {
     e.preventDefault();
     setLoading(true);
 
-    // FormData ব্যবহার করা ডাটা নেওয়ার জন্য সবথেকে নিরাপদ উপায়
+
     const formData = new FormData(e.currentTarget);
     const email = formData.get("email");
     const password = formData.get("password");
 
     try {
-      // Better Auth-এ 'login' নয়, 'signIn' ব্যবহার করতে হয়
+ 
       const { data, error } = await authClient.signIn.email({
         email,
         password,
-        callbackURL: "/", // লগইন সফল হলে যেখানে পাঠাতে চান
+        callbackURL: "/",
       });
 
       if (error) {
@@ -42,7 +42,7 @@ export default function LogInPage() {
         alert(error.message || "Something went wrong. Please check your credentials.");
       } else {
         console.log("Login successful:", data);
-        router.push("/"); // ম্যানুয়ালি রিডাইরেক্ট করার জন্য
+        router.push("/"); 
       }
     } catch (err) {
       console.error("Unexpected Error:", err);
@@ -54,7 +54,7 @@ export default function LogInPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#0f172a] px-4">
       
-      {/* 🧊 Animated Card */}
+    
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -68,7 +68,7 @@ export default function LogInPage() {
           </h1>
 
           <Form className="flex w-full flex-col gap-5" onSubmit={onSubmit}>
-            {/* Email Field */}
+           
             <TextField isRequired name="email" type="email">
               <Label className="text-gray-400 text-sm mb-1 block">Email</Label>
               <Input
@@ -78,7 +78,7 @@ export default function LogInPage() {
               <FieldError className="text-red-400 text-xs mt-1" />
             </TextField>
 
-            {/* Password Field */}
+            
             <TextField isRequired name="password" type="password">
               <Label className="text-gray-400 text-sm mb-1 block">Password</Label>
               <Input
@@ -91,7 +91,7 @@ export default function LogInPage() {
               <FieldError className="text-red-400 text-xs mt-1" />
             </TextField>
 
-            {/* Action Buttons */}
+          
             <div className="flex gap-3 pt-3">
               <Button
                 type="submit"

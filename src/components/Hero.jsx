@@ -6,25 +6,24 @@ import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
-    // mt-0 রাখা হয়েছে কারণ নেভবার ট্রান্সপারেন্ট থাকবে। 
-    // h-screen ব্যবহার করলে পুরো স্ক্রিন জুড়ে থাকবে।
+
     <section className="relative w-full h-screen flex items-center overflow-hidden bg-gray-900">
       
-      {/* Background Image */}
+     
       <div className="absolute inset-0 w-full h-full">
         <Image
           src="/hero.png" 
           alt="Qurbani Animals"
           fill
           priority
-          className="object-cover object-[75%] md:object-center" // মোবাইলে গরুর মুখ দেখানোর জন্য object-right/75%
+          className="object-cover object-[75%] md:object-center" 
         />
       </div>
 
-      {/* Overlay: বাম দিকে ডার্কনেস বাড়ানো হয়েছে যাতে টেক্সট ক্লিয়ার হয় */}
+     
       <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/40 to-transparent"></div>
 
-      {/* Content Container */}
+  
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full text-white pt-2 mt-2 mb-8">
         
         <motion.div 
@@ -52,7 +51,7 @@ const Hero = () => {
           </div>
         </motion.div>
 
-        {/* Feature Cards: Glassmorphism effect */}
+        
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 max-w-4xl bg-black/30 backdrop-blur-md p-6 rounded-3xl border border-white/10">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center">
