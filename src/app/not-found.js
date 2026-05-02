@@ -13,7 +13,7 @@ export default function NotFound() {
         <div className="absolute w-100 h-[400px] bg-blue-600 opacity-20 blur-3xl rounded-full -bottom-25 right-[-100px] animate-pulse"></div>
       </div>
 
-      {/* 🚀 Main Card */}
+    
       <motion.div
         initial={{ opacity: 0, scale: 0.9, y: 40 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -22,7 +22,7 @@ export default function NotFound() {
       >
         <div className="bg-gray-900/60 backdrop-blur-xl border border-gray-700 rounded-2xl p-8 shadow-2xl">
 
-          {/* 🔢 404 Animated */}
+         
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -32,7 +32,7 @@ export default function NotFound() {
             404
           </motion.h1>
 
-          {/* ✨ Floating Emoji */}
+   
           <motion.div
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
@@ -41,7 +41,7 @@ export default function NotFound() {
             🚀
           </motion.div>
 
-          {/* 🧠 Heading */}
+      
           <motion.h2
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -51,7 +51,7 @@ export default function NotFound() {
             Page Not Found
           </motion.h2>
 
-          {/* 📄 Description */}
+         
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
