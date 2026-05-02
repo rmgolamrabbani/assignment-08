@@ -10,13 +10,23 @@ export const auth = betterAuth({
     client
   }),
 
+
+  trustedOrigins: [
+    "http://localhost:3000",
+    "https://assignment-08-flame.vercel.app", 
+    "https://assignment-08-9gmdd1eiz-rmgolamrabbanis-projects.vercel.app" 
+  ],
+
   emailAndPassword: {
     enabled: true,
   },
+  
   socialProviders: {
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,   
     }
-    }
+  }
 });
+
+
