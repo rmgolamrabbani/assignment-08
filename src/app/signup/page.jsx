@@ -23,7 +23,7 @@ export default function SignUpPage() {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-        // 👉 Get form data
+  
     const name = e.target.name.value;
     const image = e.target.image.value;
     const email = e.target.email.value;
@@ -38,8 +38,6 @@ export default function SignUpPage() {
     console.log("Signup response:", { data, error });
 
     
-
-
     if (error) {
         alert(error.message || "Something went wrong. Please try again.");
     } else {
@@ -60,7 +58,7 @@ export default function SignUpPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#0f172a] px-4">
       
-      {/* 🧊 Card */}
+     
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -70,12 +68,12 @@ export default function SignUpPage() {
         <Card className="p-8 rounded-2xl bg-[#111827] border border-gray-700 shadow-xl">
           
           <h1 className="text-center text-3xl font-bold text-white mb-6">
-            Create Account ✨
+            Create Account 
           </h1>
 
           <Form className="flex w-full flex-col gap-5" onSubmit={onSubmit}>
             
-            {/* Name */}
+         
             <TextField isRequired name="name">
               <Label className="text-gray-400 text-sm">Name</Label>
               <Input
@@ -85,7 +83,7 @@ export default function SignUpPage() {
               <FieldError />
             </TextField>
 
-            {/* Image */}
+         
             <TextField isRequired name="image">
               <Label className="text-gray-400 text-sm">Image URL</Label>
               <Input
@@ -95,7 +93,7 @@ export default function SignUpPage() {
               <FieldError />
             </TextField>
 
-            {/* Email */}
+            
             <TextField isRequired name="email" type="email">
               <Label className="text-gray-400 text-sm">Email</Label>
               <Input
@@ -105,7 +103,7 @@ export default function SignUpPage() {
               <FieldError />
             </TextField>
 
-            {/* Password */}
+            
             <TextField isRequired name="password" type="password">
               <Label className="text-gray-400 text-sm">Password</Label>
               <Input
@@ -118,7 +116,7 @@ export default function SignUpPage() {
               <FieldError />
             </TextField>
 
-            {/* Buttons */}
+           
             <div className="flex gap-3 pt-3">
               <Button
                 type="submit"
