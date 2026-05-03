@@ -19,7 +19,6 @@ export default function SignUpPage() {
 
   const router = useRouter();
 
-
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -50,8 +49,13 @@ export default function SignUpPage() {
     await authClient.signIn.social({
         provider: 'google'
     })
-  }
+  };
 
+  const handleGithubSignup = async () => {
+    await authClient.signIn.social({
+        provider: 'github'
+    })
+  }
 
 
 
@@ -140,10 +144,17 @@ export default function SignUpPage() {
             <div className="flex justify-center gap-4 mt-4">
               <Button
                 type="button"
-                className="bg-transparent text-gray-300 border border-gray-600 hover:bg-gray-700 hover:text-white transition"
+                className="bg-transparent text-gray-300 border border-blue-600 hover:bg-blue-700 hover:text-white transition p-2 rounded-lg flex items-center gap-2"
                 onClick={handleGoogleSignup}
               >
                 Google
+              </Button>
+              <Button
+                type="button"
+                className="bg-transparent text-gray-300 border border-blue-600 hover:bg-blue-700 hover:text-white transition p-2 rounded-lg flex items-center gap-2"
+                onClick={handleGithubSignup}
+              >
+                GitHub
               </Button>
             </div>
         </Card>

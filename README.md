@@ -1,36 +1,160 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🐐 QurbaniHat
 
-## Getting Started
+## 📌 Project Overview
 
-First, run the development server:
+**QurbaniHat** is an online marketplace platform designed to simplify the buying and selling of Qurbani animals. It allows users to browse, filter, and purchase animals easily while giving sellers a structured way to list and manage their livestock.
+
+---
+
+## 🎯 Purpose
+
+The goal of this project is to digitize the traditional Qurbani animal market by:
+
+* Making animal discovery easier with filters and categories
+* Providing a smooth user experience for buyers and sellers
+* Enabling secure and efficient transactions
+* Bringing transparency to pricing and animal details
+
+---
+
+## 🌐 Live URL
+ https://assignment-08-flame.vercel.app/
+
+*(Replace with your actual deployed link)*
+
+---
+
+## 🚀 Key Features
+
+### 🐄 Animal Listings
+
+* Browse animals with images, price, and details
+* Category-based filtering (Cow, Goat, etc.)
+* Dynamic product detail pages
+
+### 🔍 Advanced Filtering & Sorting
+
+* Filter by category
+* Price range filtering (min/max)
+* Sorting (Low → High, High → Low)
+* URL-based state sync (SEO friendly)
+
+### 👤 Authentication System
+
+* User registration & login
+* Protected routes
+* Profile management
+
+### 🛒 Seller Features
+
+* Add new animal listings
+* Update and delete listings
+* Image upload support
+
+### 🎨 Modern UI/UX
+
+* Glassmorphism design
+* Fully responsive layout
+* Smooth animations (Framer Motion)
+
+---
+
+## 🧰 Tech Stack
+
+### Frontend
+
+* React.js
+* Next.js (App Router)
+* Tailwind CSS
+* Framer Motion
+
+### Backend
+
+* Node.js
+
+### Database
+
+* MongoDB (Mongoose)
+
+---
+
+## 📦 NPM Packages Used
+
+### Core
+
+* `next`
+* `react`
+* `react-dom`
+
+### UI & Styling
+
+* `tailwindcss`
+* `framer-motion`
+* `lucide-react`
+* `@heroui/react`
+
+### Backend & Database
+
+* `express`
+* `mongoose`
+* `cors`
+* `dotenv`
+
+### Authentication
+
+* `jsonwebtoken`
+* `bcryptjs`
+
+### Utilities
+
+* `axios`
+* `query-string`
+
+---
+
+## ⚙️ Installation & Setup
 
 ```bash
+# Clone the repository
+git clone https://github.com/rmgolamrabbani/assignment-08
+
+# Go to project directory
+cd qurbanihat
+
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 📸 Screenshots
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+*(Optional: Add screenshots of your UI here)*
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🤝 Contribution
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Contributions are welcome! Feel free to fork the repo and submit a pull request.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 📄 License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project is licensed under the MIT License.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 👨‍💻 Author
+
+**Your Name**
+
+Md. Golam Rabbni 
+
+GitHub: https://github.com/rmgolamrabbani
+LinkedIn: https://www.linkedin.com/in/rmgolamrabbani01/
+
+---
