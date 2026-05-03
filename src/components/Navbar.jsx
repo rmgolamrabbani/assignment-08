@@ -68,11 +68,11 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
 
         {/*  Logo */}
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-1">
           <motion.div whileHover={{ scale: 1.05 }}>
             <Image src="/logo.png" alt="Logo" width={50} height={50} className="h-auto w-auto " />
           </motion.div>
-          <span className="text-xl font-bold text-white">
+          <span className=" font-bold text-white tracking-tight text-2xl">
             Qurbani<span className="text-green-500">Hat</span>
           </span>
         </Link>

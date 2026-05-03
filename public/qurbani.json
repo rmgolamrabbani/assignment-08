@@ -23,7 +23,7 @@
     {
       "id": 1,
       "name": "Deshi Cow",
-      "image": "https://i.postimg.cc/0y6XK0rK/cow1.jpg",
+      "image": "https://images.unsplash.com/photo-1596733430284-f7437764b1a9",
       "rating": 4.8,
       "category": "cow",
       "badge": "Popular"
@@ -31,7 +31,7 @@
     {
       "id": 2,
       "name": "Friesian Cow",
-      "image": "https://i.postimg.cc/Zn0jGzYJ/cow2.jpg",
+      "image": "https://images.unsplash.com/photo-1500595046743-cd271d694d30",
       "rating": 4.9,
       "category": "cow",
       "badge": "Premium"
@@ -39,7 +39,7 @@
     {
       "id": 3,
       "name": "Black Bengal Goat",
-      "image": "https://i.postimg.cc/2yY8bQf3/goat1.jpg",
+      "image": "https://www.pexels.com/photo/close-up-of-a-nubian-goat-on-a-farm-35679351",
       "rating": 4.7,
       "category": "goat",
       "badge": "Best Seller"
@@ -47,7 +47,7 @@
     {
       "id": 4,
       "name": "Jamunapari Goat",
-      "image": "https://i.postimg.cc/QtLz5zjL/goat2.jpg",
+      "image": "https://images.unsplash.com/photo-1546182990-dffeafbe841d",
       "rating": 4.6,
       "category": "goat",
       "badge": "Top Rated"
