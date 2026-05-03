@@ -20,7 +20,7 @@ The goal of this project is to digitize the traditional Qurbani animal market by
 ## 🌐 Live URL
  https://assignment-08-flame.vercel.app/
 
-*(Replace with your actual deployed link)*
+
 
 ---
 
