@@ -1,6 +1,6 @@
 # 🐐 QurbaniHat
 
-## 📌 Project Overview
+## Project Overview
 
 **QurbaniHat** is an online marketplace platform designed to simplify the buying and selling of Qurbani animals. It allows users to browse, filter, and purchase animals easily while giving sellers a structured way to list and manage their livestock.
 
