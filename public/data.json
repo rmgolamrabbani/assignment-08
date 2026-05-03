@@ -35,7 +35,7 @@
     "age": 1.5,
     "location": "Naogaon",
     "description": "Popular goat for Qurbani.",
-    "image": "https://www.pexels.com/photo/close-up-of-a-nubian-goat-on-a-farm-35679351",
+    "image": "https://images.unsplash.com/photo-1546182990-dffeafbe841d",
     "category": "Small Animal"
   },
   {
@@ -100,7 +100,7 @@
     "age": 3,
     "location": "Pabna",
     "description": "Ready for Qurbani.",
-    "image": "https://unsplash.com/photos/brown-cow-on-green-grass-field-during-daytime-UYZdcNH7OKg",
+    "image": "https://images.unsplash.com/photo-1501706362039-c6e08c1c5c64",
     "category": "Large Animal"
   }
 ]
