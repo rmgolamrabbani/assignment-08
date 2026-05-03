@@ -3,6 +3,7 @@ import React from "react";
 import { FaCheckCircle, FaTruck, FaHeart } from "react-icons/fa";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -42,9 +43,12 @@ const Hero = () => {
           </p>
 
           <div className="mt-8 flex flex-row flex-wrap gap-4">
-            <button className="bg-green-500 hover:bg-green-600 transition-all active:scale-95 px-8 py-4 rounded-xl font-bold flex items-center gap-2 shadow-xl shadow-green-900/40">
+            <Link href="/all-animals">
+                   <button className="bg-green-500 hover:bg-green-600 transition-all active:scale-95 px-8 py-4 rounded-xl font-bold flex items-center gap-2 shadow-xl shadow-green-900/40">
                Browse Animals
-            </button>
+            </button>     
+                      </Link>
+            
             <button className="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 px-8 py-4 rounded-xl font-bold flex items-center gap-2 transition">
                How It Works
             </button>

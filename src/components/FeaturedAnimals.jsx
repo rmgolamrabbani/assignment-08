@@ -5,7 +5,7 @@ import AnimalCards from "./AnimalCards";
 const FeaturedAnimals = async () => {
   const res = await fetch(
     "https://assignment-08-flame.vercel.app/data.json",
-    { cache: "no-store" } // always fresh data
+    { cache: "no-store" } 
   );
 
   const animals = await res.json();
