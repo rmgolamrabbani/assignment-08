@@ -31,7 +31,7 @@ export default function SignUpPage() {
     password: "",
   });
 
-  // 🔥 Live validation
+  //  Live validation
   const isValidEmail = form.email.includes("@");
   const isValidPassword =
     form.password.length >= 8 &&
@@ -77,7 +77,7 @@ export default function SignUpPage() {
         <Card className="p-8 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl">
           
           <h1 className="text-center text-3xl font-bold text-white mb-6">
-            Create Account 🚀
+            Create Account 
           </h1>
 
           <Form onSubmit={onSubmit} className="flex flex-col gap-5">
@@ -248,5 +248,4 @@ export default function SignUpPage() {
     </div>
   );
 }
-
 
