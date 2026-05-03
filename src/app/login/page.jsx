@@ -72,7 +72,7 @@ export default function LogInPage() {
             <TextField isRequired name="email" type="email">
               <Label className="text-gray-400 text-sm mb-1 block">Email</Label>
               <Input
-                className="bg-[#1f2937] border border-gray-600 text-white placeholder:text-gray-500 rounded-lg focus:ring-2 focus:ring-green-500 transition"
+                className="bg-[#1f2937] border border-gray-600 text-white placeholder:text-gray-500 rounded-lg focus:ring-2 focus:ring-green-500 transition w-full p-2"
                 placeholder="john@example.com"
               />
               <FieldError className="text-red-400 text-xs mt-1" />
@@ -82,7 +82,7 @@ export default function LogInPage() {
             <TextField isRequired name="password" type="password">
               <Label className="text-gray-400 text-sm mb-1 block">Password</Label>
               <Input
-                className="bg-[#1f2937] border border-gray-600 text-white placeholder:text-gray-500 rounded-lg focus:ring-2 focus:ring-green-500 transition"
+                className="bg-[#1f2937] border border-gray-600 text-white placeholder:text-gray-500 rounded-lg focus:ring-2 focus:ring-green-500 transition w-full p-2"
                 placeholder="Enter your password"
               />
               <Description className="text-gray-500 text-xs mt-1">

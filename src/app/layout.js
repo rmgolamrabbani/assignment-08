@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
     >
       <body className="bg-white dark:text-gray-900  duration-300">
         <Navbar />
-        <Toaster position="top-right" />
+       
         <main className="pt-20">
           {children}
         <Toaster position="top-center" />

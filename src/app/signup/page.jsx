@@ -84,26 +84,26 @@ export default function SignUpPage() {
 
             {/* Name */}
             <TextField isRequired name="name">
-              <Label className="text-gray-300">Name</Label>
+              <Label className="text-gray-300 mr-4">Name</Label>
               <Input
                 value={form.name}
                 onChange={(e) =>
                   setForm({ ...form, name: e.target.value })
                 }
-                className="bg-white/10 border-white/20 text-white rounded-xl"
+                className="bg-white/10 border-white/20 text-white rounded-xl w-full p-2"
                 placeholder="Enter your name"
               />
             </TextField>
 
             {/* Image */}
             <TextField isRequired name="image">
-              <Label className="text-gray-300">Image URL</Label>
+              <Label className="text-gray-300 mr-4">Image URL</Label>
               <Input
                 value={form.image}
                 onChange={(e) =>
                   setForm({ ...form, image: e.target.value })
                 }
-                className="bg-white/10 border-white/20 text-white rounded-xl"
+                className="bg-white/10 border-white/20 text-white rounded-xl w-full p-2"
                 placeholder="Paste image URL"
               />
             </TextField>
@@ -120,13 +120,13 @@ export default function SignUpPage() {
                   : "default"
               }
             >
-              <Label className="text-gray-300">Email</Label>
+              <Label className="text-gray-300 mr-4">Email</Label>
               <Input
                 value={form.email}
                 onChange={(e) =>
                   setForm({ ...form, email: e.target.value })
                 }
-                className="bg-white/10 border-white/20 text-white rounded-xl"
+                className="bg-white/10 border-white/20 text-white rounded-xl w-full p-2"
                 placeholder="john@example.com"
               />
               {!isValidEmail && form.email && (
@@ -148,7 +148,7 @@ export default function SignUpPage() {
                   : "default"
               }
             >
-              <Label className="text-gray-300">Password</Label>
+              <Label className="text-gray-300 mr-4">Password</Label>
 
               <div className="relative">
                 <Input
@@ -157,11 +157,11 @@ export default function SignUpPage() {
                   onChange={(e) =>
                     setForm({ ...form, password: e.target.value })
                   }
-                  className="bg-white/10 border-white/20 text-white rounded-xl pr-10"
+                  className="bg-white/10 border-white/20 text-white rounded-xl pr-10 w-full p-2"
                   placeholder="Enter password"
                 />
 
-                {/* 👁 Toggle */}
+                {/*  Toggle */}
                 <button
                   type="button"
                   onClick={() => setShowPass(!showPass)}
